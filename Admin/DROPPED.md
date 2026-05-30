@@ -132,13 +132,14 @@ of the discography.
 
 ## 8. Videos Page
 
-**Dropped as a standalone page.** The original Videos page had only two
-clips — not enough to justify a dedicated page in the rebuild.
+**Built as a standalone page at `/videos`.** The original Videos page had
+only two clips, but Frank found five videos on YouTube across the band
+channel and Gretchen's channel — enough to make a proper listing.
 
-**What replaces it:** Frank will collect all band videos and create a
-playlist on his YouTube channel. Once that exists, the band can decide
-where to surface the link on the site (History hub, Our Music, or both).
-This is a "nice to have" — no rush, do it when convenient.
+**What was built:** A curated video list page linked from the "Hear the
+Bagboys on YouTube" button on Our Music. Each entry shows the title,
+date, duration, and which channel posted it. Adding more videos in the
+future just means adding a line to the `videos` array in the page file.
 
 ---
 

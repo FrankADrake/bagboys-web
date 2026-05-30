@@ -6,13 +6,14 @@ Single source of truth for open tasks. Update at the end of every session.
 
 ## Up next
 
-- [ ] Connect to Cloudflare Pages
-- [ ] After deploy: set Cloudflare env vars — `RESEND_API_KEY`, `BAGBOYS_TO_EMAIL` (frankdrake@gmail.com), `TURNSTILE_SECRET_KEY`
-- [ ] After deploy: add bagboys.com domain to Turnstile site config (cloudflare.com dashboard)
-- [ ] After deploy: test contact form end-to-end (submit → verify email lands)
+- [x] Connect to Cloudflare Pages — live at bagboys-web.pages.dev
+- [x] Set Cloudflare env vars (Production + Preview)
+- [x] Test contact form end-to-end — working, emails land at frankdrake@gmail.com
+- [ ] Fix Git auto-deploy — project shows "disconnected from Git account"; deploys currently done manually via wrangler
+- [ ] After bagboys.com is connected: add it to Turnstile site config (Cloudflare dashboard → Turnstile → Edit Widget → Add Hostnames)
 - [ ] Write narrative intro for History hub (Frank, Gretchen, Harvey to decide together)
-- [x] Find and add `album-sensible-music.jpg` (Sensible Music For Troubled Times cover)
 - [ ] Fill in open content (album years — see SPEC §10)
+- [ ] Share dev site with Gretchen and Harvey: https://bagboys-web.pages.dev — share DROPPED.md "Questions for the Band" section alongside
 
 ## Nice to have (post-launch)
 
