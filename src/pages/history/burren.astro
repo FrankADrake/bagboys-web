@@ -43,7 +43,7 @@ const photos = rawPaths.map((p) => p.replace('/public', ''));
         </div>
       </section>
     ) : (
-      <p class="photos-pending">[ Photos coming soon ]</p>
+      <p class="photos-pending">NOTE: Photos needed — drop images into public/images/burren/ to populate this grid.</p>
     )}
 
     <p class="back-link"><a href="/history/residencies">← Back to Residencies</a></p>
@@ -99,9 +99,11 @@ const photos = rawPaths.map((p) => p.replace('/public', ''));
   .photos-pending {
     text-align: center;
     font-size: 0.9rem;
-    color: #aaa;
+    color: #c00;
     font-style: italic;
-    padding: 2rem 0;
+    padding: 1.5rem;
+    border: 2px dashed #c00;
+    border-radius: 4px;
   }
 
   .back-link {

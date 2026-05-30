@@ -15,7 +15,7 @@ import Layout from '../layouts/Layout.astro';
  *   Replace the href on the YouTube button once the playlist is set up.
  */
 
-const CD_EMAIL = 'your@email.com'; // ⚠️ confirm with Frank
+const CD_EMAIL = 'gbowder@verizon.net';
 
 const albums = [
   {
@@ -141,7 +141,7 @@ const albums = [
     title: 'Sensible Music For Troubled Times',
     displayTitle: null,
     year: 1987,
-    cover: null,       // → '/images/album-sensible-music.jpg'
+    cover: '/images/album-sensible-music.jpg',
     description: 'Debut album.',
     tracks: null,      // ⚠️ track list not yet captured
     quote: null,
@@ -157,13 +157,7 @@ const albums = [
 
     <!-- CTA buttons -->
     <div class="cta-row">
-      <!-- ⚠️ Update href to the actual YouTube playlist URL once it's set up -->
-      <a
-        href="https://youtube.com/@frankdrake57"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cta-btn"
-      >
+      <a href="/videos" class="cta-btn">
         Hear the Bagboys on YouTube
       </a>
       <a href="#cd-availability" class="cta-btn">

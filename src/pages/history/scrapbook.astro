@@ -1,0 +1,170 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+/**
+ * Scrapbook — /history/scrapbook
+ *
+ * Pure photo gallery with film-negative styling per SPEC §4.10.
+ * No collaborators list (canonical list lives on Bio).
+ *
+ * Photos go in public/images/scrapbook/
+ * Drop any .jpg, .jpeg, .png, or .webp files there and they
+ * appear automatically — no code changes needed.
+ */
+
+const rawPaths = Object.keys(
+  import.meta.glob('/public/images/scrapbook/*.{jpg,jpeg,png,webp}')
+);
+const photos = rawPaths.map((p) => p.replace('/public', ''));
+---
+
+<Layout title="Scrapbook — The Bagboys">
+  <div class="page-body">
+
+    <h1 class="page-heading">Bagboys' Scrapbook</h1>
+
+    <!-- =====================================================
+         FILM-NEGATIVE PHOTO GRID
+         Driven by files in public/images/scrapbook/
+         Styled as black-and-white film negatives.
+         ===================================================== -->
+    {photos.length > 0 ? (
+      <section class="photo-section">
+        <div class="film-grid">
+          {photos.map((src, i) => (
+            <div class="film-frame">
+              <div class="film-strip-top">
+                <span class="perf" /><span class="perf" /><span class="perf" />
+                <span class="frame-num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="perf" /><span class="perf" /><span class="perf" />
+              </div>
+              <div class="film-image-wrap">
+                <img src={src} alt={`Bagboys scrapbook photo ${i + 1}`} loading="lazy" />
+              </div>
+              <div class="film-strip-bottom">
+                <span class="perf" /><span class="perf" /><span class="perf" />
+                <span class="kodak-text">KODAK 5053 TMZ</span>
+                <span class="perf" /><span class="perf" /><span class="perf" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    ) : (
+      <p class="photos-pending">NOTE: Photos needed — drop images into public/images/scrapbook/ to populate this grid.</p>
+    )}
+
+    <p class="back-link"><a href="/history">← Back to History</a></p>
+
+  </div>
+</Layout>
+
+<style>
+  /* ---- Film grid layout -------------------------------- */
+  .film-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* ---- Individual film frame -------------------------- */
+  .film-frame {
+    background: #1a1a1a;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  /* ---- Sprocket-hole strip (top + bottom) -------------- */
+  .film-strip-top,
+  .film-strip-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #111;
+    padding: 4px 6px;
+    gap: 4px;
+  }
+
+  /* Sprocket holes */
+  .perf {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: #333;
+    border: 1px solid #444;
+    flex-shrink: 0;
+  }
+
+  /* Frame number label */
+  .frame-num {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.55rem;
+    color: #e0c050;
+    letter-spacing: 0.05em;
+    flex: 1;
+    text-align: center;
+  }
+
+  /* Kodak stock label */
+  .kodak-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.5rem;
+    color: #e0c050;
+    letter-spacing: 0.08em;
+    flex: 1;
+    text-align: center;
+  }
+
+  /* ---- Photo cell ------------------------------------- */
+  .film-image-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+
+  .film-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1) brightness(0.9);
+    transition: filter 0.25s ease, transform 0.25s ease;
+  }
+
+  .film-frame:hover .film-image-wrap img {
+    filter: grayscale(70%) contrast(1.05) brightness(1.0);
+    transform: scale(1.03);
+  }
+
+  /* ---- Pending placeholder ----------------------------- */
+  .photos-pending {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #c00;
+    font-style: italic;
+    padding: 1.5rem;
+    border: 2px dashed #c00;
+    border-radius: 4px;
+  }
+
+  /* ---- Back link -------------------------------------- */
+  .back-link {
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* ---- Responsive ------------------------------------- */
+  @media (max-width: 640px) {
+    .film-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .film-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

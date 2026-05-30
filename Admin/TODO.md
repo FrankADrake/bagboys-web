@@ -6,12 +6,13 @@ Single source of truth for open tasks. Update at the end of every session.
 
 ## Up next
 
-- [ ] Build Scrapbook page (`/history/scrapbook`) — photo grid, film-negative styling per SPEC §4.10
-- [ ] Build Contact Us page — form with member dropdown, Resend + Cloudflare Worker
 - [ ] Connect to Cloudflare Pages
-- [ ] Write narrative intro for History hub (Frank)
-- [ ] Find and add `album-sensible-music.jpg` (Sensible Music For Troubled Times cover)
-- [ ] Fill in open content (album years, contact emails — see SPEC §10)
+- [ ] After deploy: set Cloudflare env vars — `RESEND_API_KEY`, `BAGBOYS_TO_EMAIL` (frankdrake@gmail.com), `TURNSTILE_SECRET_KEY`
+- [ ] After deploy: add bagboys.com domain to Turnstile site config (cloudflare.com dashboard)
+- [ ] After deploy: test contact form end-to-end (submit → verify email lands)
+- [ ] Write narrative intro for History hub (Frank, Gretchen, Harvey to decide together)
+- [x] Find and add `album-sensible-music.jpg` (Sensible Music For Troubled Times cover)
+- [ ] Fill in open content (album years — see SPEC §10)
 
 ## Nice to have (post-launch)
 
@@ -40,3 +41,6 @@ Single source of truth for open tasks. Update at the end of every session.
 - [x] Build The Burren page (+ directory-driven photo grid)
 - [x] Build Ossipee Valley page (+ directory-driven photo grid)
 - [x] Build Historical Posters page (+ slideshow with prev/next + thumbnail strip)
+- [x] Build Scrapbook page (film-negative photo grid, directory-driven)
+- [x] Build Videos page (`/videos`) — curated YouTube listing
+- [x] Build Contact Us page — direct email links + send-a-note form + Cloudflare Pages Function

@@ -1,0 +1,278 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const members = [
+  { name: 'Frank',   email: 'frankdrake@gmail.com' },
+  { name: 'Gretchen', email: 'gbowder@verizon.net' },
+  { name: 'Harvey',  email: 'pauljost9@gmail.com' },
+];
+---
+
+<Layout title="Contact Us — The Bagboys">
+  <div class="page-body">
+
+    <h1 class="page-heading">Contact Us</h1>
+
+    <!-- =====================================================
+         SECTION 1 — Direct email links
+         ===================================================== -->
+    <section class="direct-section">
+      <h2 class="section-label">Contact us directly:</h2>
+      <div class="member-links">
+        {members.map((m) => (
+          <div class="member-card">
+            <span class="member-name">{m.name}</span>
+            <a href={`mailto:${m.email}`} class="member-email">{m.email}</a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="section-divider">or</div>
+
+    <!-- =====================================================
+         SECTION 2 — Send us a note form
+         ===================================================== -->
+    <section class="note-section">
+      <h2 class="section-label">Send us a note:</h2>
+      <p class="note-invite">
+        We would love to hear from you!<br />
+        Share thoughts, stories, memories!
+      </p>
+
+      <form id="contact-form" class="contact-form">
+
+        <div class="field-group">
+          <label for="c-name">Name <span class="optional">(optional)</span></label>
+          <input type="text" id="c-name" name="name" autocomplete="name" />
+        </div>
+
+        <div class="field-group">
+          <label for="c-email">Email <span class="optional">(optional)</span></label>
+          <input type="email" id="c-email" name="email" autocomplete="email" />
+        </div>
+
+        <div class="field-group">
+          <label for="c-message">Your message</label>
+          <textarea id="c-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAADXT0BrH_KL-zpLx"></div>
+
+        <button type="submit" class="submit-btn">Send</button>
+      </form>
+
+      <div class="thanks" id="contact-thanks">
+        <p>Thank you! We'll be in touch.</p>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+  // Load Turnstile widget
+  const ts = document.createElement('script');
+  ts.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+  ts.async = true;
+  ts.defer = true;
+  document.head.appendChild(ts);
+
+  const form   = document.getElementById('contact-form') as HTMLFormElement;
+  const thanks = document.getElementById('contact-thanks') as HTMLDivElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('/contact-form', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        thanks.style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send';
+        alert('Something went wrong. Please try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Send';
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
+
+<style>
+  /* ---- Direct email section -------------------------- */
+  .direct-section {
+    max-width: 560px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+  }
+
+  .section-label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 1.25rem;
+  }
+
+  .member-links {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .member-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .member-name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #222;
+  }
+
+  .member-email {
+    font-size: 0.82rem;
+    color: var(--teal, #3aada8);
+    text-decoration: none;
+  }
+
+  .member-email:hover {
+    text-decoration: underline;
+  }
+
+  /* ---- Divider --------------------------------------- */
+  .section-divider {
+    text-align: center;
+    font-size: 1rem;
+    color: #aaa;
+    font-style: italic;
+    margin: 1.75rem 0;
+    position: relative;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 38%;
+    height: 1px;
+    background: #e0d8c8;
+  }
+
+  .section-divider::before { left: 0; }
+  .section-divider::after  { right: 0; }
+
+  /* ---- Send a note section --------------------------- */
+  .note-section {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .note-invite {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  /* ---- Form ------------------------------------------ */
+  .contact-form {
+    text-align: left;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .field-group label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #555;
+    letter-spacing: 0.03em;
+  }
+
+  .optional {
+    font-weight: 400;
+    color: #999;
+  }
+
+  .field-group input,
+  .field-group textarea {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #d0c8b8;
+    border-radius: 3px;
+    background: #faf8f4;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #222;
+    transition: border-color 0.15s;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+
+  .field-group input:focus,
+  .field-group textarea:focus {
+    outline: none;
+    border-color: var(--teal, #3aada8);
+  }
+
+  .cf-turnstile {
+    margin-bottom: 1.1rem;
+  }
+
+  .submit-btn {
+    display: inline-block;
+    padding: 0.6rem 2rem;
+    background-color: #5c4a2a;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+  }
+
+  .submit-btn:hover {
+    background-color: #7a6438;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* ---- Thank you state ------------------------------- */
+  .thanks {
+    display: none;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--teal, #3aada8);
+  }
+</style>

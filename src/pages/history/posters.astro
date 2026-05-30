@@ -59,7 +59,7 @@ const hasPhotos = photos.length > 0;
 
       </div>
     ) : (
-      <p class="photos-pending">[ Posters coming soon ]</p>
+      <p class="photos-pending">NOTE: Posters needed — drop images into public/images/posters/ to populate this slideshow.</p>
     )}
 
     <p class="back-link"><a href="/history">← Back to History</a></p>
@@ -226,9 +226,11 @@ const hasPhotos = photos.length > 0;
   .photos-pending {
     text-align: center;
     font-size: 0.9rem;
-    color: #aaa;
+    color: #c00;
     font-style: italic;
-    padding: 2rem 0;
+    padding: 1.5rem;
+    border: 2px dashed #c00;
+    border-radius: 4px;
   }
 
   /* ---- Back link ------------------------------------- */

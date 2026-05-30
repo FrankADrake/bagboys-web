@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * Videos — /videos
+ *
+ * Curated list of Bagboys YouTube videos.
+ * To add a new video, add an entry to the `videos` array below.
+ */
+
+const videos = [
+  {
+    title: 'The Bagboys the Deerfield Fair, NH — Sept 30, 2024',
+    channel: 'Gretchen Bowder',
+    date: 'December 30, 2025',
+    duration: '1:43:58',
+    url: 'http://www.youtube.com/watch?v=7SkQoXCSuGw',
+  },
+  {
+    title: 'The Bagboys, Joe Val Showcase Stage — Part 1',
+    channel: 'The Bagboys',
+    date: 'February 19, 2019',
+    duration: '12:34',
+    url: 'http://www.youtube.com/watch?v=gFwFAHhz-0s',
+  },
+  {
+    title: 'The Bagboys, Joe Val Showcase Stage — Part 2',
+    channel: 'The Bagboys',
+    date: 'February 19, 2019',
+    duration: '14:41',
+    url: 'http://www.youtube.com/watch?v=FOsmJCv67tw',
+  },
+  {
+    title: 'The Bagboys play Jobim\'s Wave',
+    channel: 'The Bagboys',
+    date: 'February 18, 2020',
+    duration: '5:03',
+    url: 'http://www.youtube.com/watch?v=ENjecYTwY04',
+  },
+  {
+    title: 'The Bagboys play Right or Wrong',
+    channel: 'Gretchen Bowder',
+    date: 'May 7, 2015',
+    duration: '4:27',
+    url: 'http://www.youtube.com/watch?v=yKZrgMjpK4c',
+  },
+];
+---
+
+<Layout title="Videos — The Bagboys">
+  <div class="page-body">
+
+    <h1 class="page-heading">Hear Us On YouTube</h1>
+    <p class="intro">Pick a video and enjoy the show.</p>
+
+    <ul class="video-list">
+      {videos.map((video) => (
+        <li class="video-card">
+          <a
+            href={video.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="video-link"
+          >
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="video-info">
+              <span class="video-title">{video.title}</span>
+              <span class="video-meta">{video.date} · {video.duration} · {video.channel}</span>
+            </span>
+            <span class="video-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="back-link"><a href="/our-music">← Back to Our Music</a></p>
+
+  </div>
+</Layout>
+
+<style>
+  .intro {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  /* ---- Video list ------------------------------------- */
+  .video-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    padding: 0;
+  }
+
+  /* ---- Video card ------------------------------------- */
+  .video-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: #f7f4ef;
+    border: 1px solid #e0d8c8;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .video-link:hover {
+    background: #eee8db;
+    border-color: var(--teal, #3aada8);
+    text-decoration: none;
+  }
+
+  /* YouTube-red play button */
+  .play-icon {
+    font-size: 1.2rem;
+    color: #c00;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .video-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .video-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.3;
+  }
+
+  .video-meta {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  .video-arrow {
+    font-size: 1rem;
+    color: var(--teal, #3aada8);
+    flex-shrink: 0;
+  }
+
+  /* ---- Back link -------------------------------------- */
+  .back-link {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+</style>
