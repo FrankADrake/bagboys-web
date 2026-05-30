@@ -55,7 +55,7 @@ export async function onRequestPost(context) {
     },
     body: JSON.stringify({
       from: 'onboarding@resend.dev',
-      to:   env.BAGBOYS_TO_EMAIL,
+      to:   env.BAGBOYS_TO_EMAIL || 'frankdrake@gmail.com',
       subject: name ? `Bagboys message from ${name}` : 'Bagboys message (no name)',
       text: lines.join('\n'),
     }),
