@@ -6,22 +6,11 @@ Single source of truth for open tasks. Update at the end of every session.
 
 ## Up next
 
-- [ ] Create GitHub repo (bagboys-web)
-- [ ] Scaffold Astro project
+- [ ] Build Scrapbook page (`/history/scrapbook`) — photo grid, film-negative styling per SPEC §4.10
+- [ ] Build Contact Us page — form with member dropdown, Resend + Cloudflare Worker
 - [ ] Connect to Cloudflare Pages
-- [ ] Build shared layout (header, nav, footer)
-- [ ] Build Home page
-- [ ] Build Bio page
-- [ ] Build Our Music page
-- [ ] Build History hub page
-- [ ] Build Residencies sub-page (links to Plough, Burren, Ossipee)
-- [ ] Build Plough & Stars page (+ slideshow)
-- [ ] Build The Burren page (+ slideshow)
-- [ ] Build Ossipee Valley page (+ slideshow)
-- [ ] Build Scrapbook page (+ slideshow)
-- [ ] Build Posters page (+ slideshow)
-- [ ] Build Contact Us page (form → Resend/Worker)
-- [ ] Gather all images into public/images/ folder structure
+- [ ] Write narrative intro for History hub (Frank)
+- [ ] Find and add `album-sensible-music.jpg` (Sensible Music For Troubled Times cover)
 - [ ] Fill in open content (album years, contact emails — see SPEC §10)
 
 ## Nice to have (post-launch)
@@ -37,3 +26,17 @@ Single source of truth for open tasks. Update at the end of every session.
 - [x] Visit live bagboys.com and document all pages
 - [x] Draft Admin/SPEC.md
 - [x] Draft Admin/DROPPED.md (editorial decisions log for band members)
+- [x] Scaffold Astro project
+- [x] Create GitHub repo (FrankADrake/bagboys-web)
+- [x] Build shared layout (header, nav, footer)
+- [x] Build Home page
+- [x] Build Bio page
+- [x] Build Our Music page
+- [x] Gather album cover images (all except Sensible Music)
+- [x] Gather member photos (all four)
+- [x] Build History hub page
+- [x] Build Residencies sub-page (links to Plough, Burren, Ossipee)
+- [x] Build The Plough & Stars page (+ directory-driven photo grid)
+- [x] Build The Burren page (+ directory-driven photo grid)
+- [x] Build Ossipee Valley page (+ directory-driven photo grid)
+- [x] Build Historical Posters page (+ slideshow with prev/next + thumbnail strip)

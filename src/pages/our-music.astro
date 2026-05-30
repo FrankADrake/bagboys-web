@@ -1,0 +1,441 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * Album cover images:
+ *   Drop files into public/images/ and update each cover value below.
+ *   Suggested filenames: album-kernel-korn.jpg, album-four-kinds-of-pie.jpg,
+ *   album-plums.jpg, album-just-say-moo.jpg, album-paper-or-plastic.jpg,
+ *   album-sensible-music.jpg
+ *
+ * CD inquiry email:
+ *   Replace 'your@email.com' in the CD_EMAIL constant below once confirmed.
+ *
+ * YouTube URL:
+ *   Replace the href on the YouTube button once the playlist is set up.
+ */
+
+const CD_EMAIL = 'your@email.com'; // ⚠️ confirm with Frank
+
+const albums = [
+  {
+    id: 'kernel-korn',
+    title: 'The Bagboys Present the Continuing Adventures of Kernel Korn and the Silk Brocade Featuring the Tail of Charlie Muttonchops and the Conclusion of the Dream Trilogy',
+    displayTitle: 'Kernel Korn',
+    year: null,        // ⚠️ confirm year
+    cover: '/images/album-kernel-korn.jpg',
+    description: '100% original Harvey Bag songs.',
+    listenUrl: 'https://youtube.com/playlist?list=OLAK5uy_mRmJ6FLAs8lFrNYriHhHiWMXXuHEDGaIw&si=d_vxarMsAxIG7GtV',
+    tracks: [
+      "We'll Meet Again",
+      'Work Song',
+      'The Siren Sang Stardust',
+      "My Baby's Smile",
+      'The Senescence Blues',
+      'Lullabye',
+      'Closer to the End',
+      'Was That a Dream?',
+      "Ain't No Flies on Me",
+      "Ain't Seen My Home",
+      'Sigh No More',
+      'Goodbye',
+    ],
+    quote: null,
+    outOfPrint: false,
+  },
+  {
+    id: 'four-kinds-of-pie',
+    listenUrl: null,
+    title: 'Four Kinds Of Pie',
+    displayTitle: null,
+    year: 2011,
+    cover: '/images/album-four-kinds-of-pie.jpg',
+    description: 'All original songs!',
+    tracks: [
+      'Take Me To The Show',
+      'Brand New Old Joe Clark',
+      'Back From the Brink',
+      'Interlude',
+      'I Still Dream of You',
+      'Maggie Be Mine',
+      "You Can't Go Home Again",
+      'Judith in the Rain',
+      'Hard Times',
+      "What's the Name of That Song?",
+      'Mercy in Paint',
+      'Somerville',
+      'Secrets',
+    ],
+    quote: null,
+    outOfPrint: false,
+  },
+  {
+    id: 'plums',
+    listenUrl: null,
+    title: 'PLUMS!',
+    displayTitle: null,
+    year: null,        // ⚠️ confirm year
+    cover: '/images/album-plums.jpg',
+    description: 'Live stage and radio performances, hand picked!',
+    tracks: [
+      "You Know I'm Right",
+      'My Dixie Darling',
+      "Dad's Song",
+      'Kisses Saved',
+      'Waiting For G',
+      'Sweet Molly Brown',
+      "Jigglin' Pigs",
+      'Baby-O',
+      'Dinah',
+      'Cold Rain And Snow',
+      'Nashville',
+      'Mom & Dad',
+      'Sublimation Blues',
+    ],
+    quote: null,
+    outOfPrint: false,
+  },
+  {
+    id: 'just-say-moo',
+    listenUrl: null,
+    title: 'Just Say Moo',
+    displayTitle: null,
+    year: null,        // ⚠️ confirm year
+    cover: '/images/album-just-say-moo.jpg',
+    description: null,
+    tracks: [
+      "Lost & I'll Never Find the Way",
+      'What Do You Dream',
+      "Hank's Song",
+      'Deep Water',
+      'Hindsight is 50/50',
+      "A Two Step's One Too Many",
+      'Just Say Moo',
+      'Blues For You',
+      'Thats Right I May Be Wrong',
+      "Unpackin' Jackson",
+      'Wild Bill Jones',
+      'Days of August',
+    ],
+    quote: {
+      text: "From the sparkling banjo introduction to Lost and I'll Never Find the Way through the sentimental closer Days of August, this self-described 'post modern string band' has put together a coherent and infectious set of tunes for its second CD. ...the overall sound is defined by the band's strong harmonies, inventive picking, and enviable sense of timing.",
+      source: 'Bluegrass Breakdown',
+    },
+    outOfPrint: false,
+  },
+  {
+    id: 'paper-or-plastic',
+    listenUrl: null,
+    title: 'Paper or Plastic',
+    displayTitle: null,
+    year: null,        // ⚠️ confirm year
+    cover: '/images/album-paper-or-plastic.jpg',
+    description: null,
+    tracks: null,      // ⚠️ track list not yet captured
+    quote: null,
+    outOfPrint: true,
+  },
+  {
+    id: 'sensible-music',
+    listenUrl: null,
+    title: 'Sensible Music For Troubled Times',
+    displayTitle: null,
+    year: 1987,
+    cover: null,       // → '/images/album-sensible-music.jpg'
+    description: 'Debut album.',
+    tracks: null,      // ⚠️ track list not yet captured
+    quote: null,
+    outOfPrint: true,
+  },
+];
+---
+
+<Layout title="Our Music — The Bagboys">
+  <div class="page-body">
+
+    <h1 class="page-heading">Our Music</h1>
+
+    <!-- CTA buttons -->
+    <div class="cta-row">
+      <!-- ⚠️ Update href to the actual YouTube playlist URL once it's set up -->
+      <a
+        href="https://youtube.com/@frankdrake57"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-btn"
+      >
+        Hear the Bagboys on YouTube
+      </a>
+      <a href="#cd-availability" class="cta-btn">
+        Purchase CDs
+      </a>
+    </div>
+
+    <!-- Album list -->
+    <div class="album-list">
+      {albums.map((album) => (
+        <div class="album-block" id={album.id}>
+          <!-- Cover -->
+          <div class="album-cover-wrap">
+            {album.cover
+              ? <img src={album.cover} alt={`${album.title} cover`} class="album-cover" />
+              : <div class="cover-placeholder" aria-hidden="true">cover</div>
+            }
+          </div>
+
+          <!-- Details -->
+          <div class="album-details">
+            <h2 class="album-title">
+              {album.displayTitle ?? album.title}
+              {album.year && <span class="album-year">({album.year})</span>}
+            </h2>
+
+            {album.displayTitle && (
+              <p class="album-full-title">{album.title}</p>
+            )}
+
+            {album.listenUrl && (
+              <a
+                href={album.listenUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="listen-btn"
+              >
+                ▶ Listen to the Album
+              </a>
+            )}
+
+            {album.description && (
+              <p class="album-description">{album.description}</p>
+            )}
+
+            {album.outOfPrint && (
+              <p class="out-of-print">Out of print — digital copy available by inquiry.</p>
+            )}
+
+            {album.tracks
+              ? (
+                <ol class="track-list">
+                  {album.tracks.map((track) => (
+                    <li>{track}</li>
+                  ))}
+                </ol>
+              )
+              : !album.outOfPrint && (
+                <p class="tracks-pending">Track list coming soon.</p>
+              )
+            }
+
+            {album.quote && (
+              <blockquote class="album-quote">
+                <p>"{album.quote.text}"</p>
+                <cite>— {album.quote.source}</cite>
+              </blockquote>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CD availability (folded in from Merchandise page) -->
+    <section class="cd-availability" id="cd-availability">
+      <h2 class="page-heading" style="font-size:1.5rem;">CD Availability</h2>
+      <p>
+        <em>Four Kinds of Pie</em>, <em>PLUMS!</em>, and <em>Just Say Moo</em>
+        are available — inquire at
+        <a href={`mailto:${CD_EMAIL}`}>{CD_EMAIL}</a>.
+      </p>
+      <p>
+        <em>Sensible Music For Troubled Times</em> and <em>Paper or Plastic</em>
+        are out of print; digital copies are available by inquiry.
+      </p>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  /* ---- CTA buttons ----------------------------------- */
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 0.6rem 1.6rem;
+    background-color: #5c4a2a;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background-color 0.15s ease;
+  }
+
+  .cta-btn:hover {
+    background-color: #7a6438;
+    text-decoration: none;
+  }
+
+  /* ---- Album blocks ---------------------------------- */
+  .album-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .album-block {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #e0d8c8;
+  }
+
+  .album-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* Cover image */
+  .album-cover {
+    width: 100%;
+    border: 3px solid #e0d8c8;
+    box-shadow: 1px 2px 6px rgba(0,0,0,0.12);
+    display: block;
+  }
+
+  .cover-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(160deg, #d0c8b8 0%, #b8b0a0 100%);
+    border: 3px solid #e0d8c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Listen button */
+  .listen-btn {
+    display: inline-block;
+    margin: 0.5rem 0 0.75rem;
+    padding: 0.4rem 1.1rem;
+    background-color: var(--teal, #3aada8);
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background-color 0.15s ease;
+  }
+
+  .listen-btn:hover {
+    background-color: #2e8f8b;
+    text-decoration: none;
+  }
+
+  /* Album details */
+  .album-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 0.25rem;
+  }
+
+  .album-year {
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: #666;
+  }
+
+  .album-full-title {
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .album-description {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0.75rem;
+  }
+
+  .out-of-print {
+    font-size: 0.9rem;
+    color: var(--dark-red, #7a2a2a);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .tracks-pending {
+    font-size: 0.9rem;
+    color: #999;
+    font-style: italic;
+  }
+
+  .track-list {
+    margin: 0.5rem 0 0 1.2rem;
+    padding: 0;
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.9;
+  }
+
+  /* Press quote on an album */
+  .album-quote {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--teal, #3aada8);
+    background: #f7f4ef;
+  }
+
+  .album-quote p {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 0.35rem;
+    line-height: 1.6;
+  }
+
+  .album-quote cite {
+    font-size: 0.8rem;
+    color: var(--dark-red, #7a2a2a);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ---- CD availability ------------------------------ */
+  .cd-availability {
+    background: #f7f4ef;
+    border: 1px solid #e0d8c8;
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .cd-availability p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .cd-availability p:last-child {
+    margin-bottom: 0;
+  }
+</style>

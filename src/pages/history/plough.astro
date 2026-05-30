@@ -1,0 +1,159 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+/**
+ * The Plough & Stars — /history/plough
+ *
+ * Text content from SPEC §4.11 (past-tense updated for retirement).
+ *
+ * Photos go in public/images/plough/
+ * Drop any .jpg, .jpeg, .png, or .webp files there and they
+ * appear automatically — no code changes needed.
+ */
+
+// Collect all photos from public/images/plough/ at build time.
+// Object.keys() gives paths like '/public/images/plough/photo.jpg';
+// strip '/public' to get the web-accessible URL '/images/plough/photo.jpg'.
+const rawPaths = Object.keys(
+  import.meta.glob('/public/images/plough/*.{jpg,jpeg,png,webp}')
+);
+const photos = rawPaths.map((p) => p.replace('/public', ''));
+---
+
+<Layout title="The Plough & Stars — The Bagboys">
+  <div class="page-body">
+
+    <h1 class="page-heading">The Plough &amp; Stars</h1>
+    <p class="venue-address">914 Mass Ave, Cambridge, MA</p>
+
+    <!-- =====================================================
+         HISTORY TEXT — two paragraphs per SPEC §4.11
+         Para 1: early history (smaller, muted)
+         Para 2: the return in 2018 (larger, dark red)
+         ===================================================== -->
+    <section class="venue-text">
+      <p class="para-history">
+        We began playing at the Plough in 1989 and did a show there almost every
+        Saturday until May of 2006. At that time, the Plough closed for a while
+        during a transition, so we moved over to the Burren in the fall of 2006.
+        We enjoyed a residency there until the spring of 2018.
+      </p>
+      <p class="para-return">
+        In September 2018, we moved back to the Plough, where we played every
+        first and third Thursday of the month from 6–8pm, until March 2020.
+      </p>
+    </section>
+
+    <!-- =====================================================
+         PHOTO GRID
+         Driven by files in public/images/plough/
+         Caption from SPEC §4.11.
+         ===================================================== -->
+    {photos.length > 0 ? (
+      <section class="photo-section">
+        <p class="photo-caption">
+          2006 with the Laval Teachers' Hockey Club, from Canada.
+          Barry Grund, bartender and youth counselor extraordinaire in attendance!
+          Andy Hall played dobro with us back then.
+        </p>
+        <div class="photo-grid">
+          {photos.map((src) => (
+            <div class="photo-wrap">
+              <img src={src} alt="The Bagboys at the Plough & Stars" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </section>
+    ) : (
+      <p class="photos-pending">[ Photos coming soon ]</p>
+    )}
+
+    <p class="back-link"><a href="/history/residencies">← Back to Residencies</a></p>
+
+  </div>
+</Layout>
+
+<style>
+  /* ---- Address --------------------------------------- */
+  .venue-address {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  /* ---- History text ---------------------------------- */
+  .venue-text {
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* Smaller, muted — the early history paragraph */
+  .para-history {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  /* Larger, dark red — the 2018 return paragraph */
+  .para-return {
+    font-size: 1.15rem;
+    color: var(--dark-red);
+    line-height: 1.7;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* ---- Photo section --------------------------------- */
+  .photo-caption {
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1.25rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .photo-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #c8bfa8;
+  }
+
+  .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
+
+  .photo-wrap:hover img {
+    transform: scale(1.04);
+  }
+
+  /* ---- Pending placeholder --------------------------- */
+  .photos-pending {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #aaa;
+    font-style: italic;
+    padding: 2rem 0;
+  }
+
+  /* ---- Back link ------------------------------------- */
+  .back-link {
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+  }
+</style>

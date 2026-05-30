@@ -1,0 +1,79 @@
+/* ===================================================
+   The Bagboys — global styles
+   =================================================== */
+
+/* --- Tokens ---------------------------------------- */
+:root {
+  --teal:       #3aada8;
+  --dark-red:   #7a2a2a;
+  --charcoal:   #222222;
+  --beige:      #e8e0d0;
+  --white:      #ffffff;
+
+  --font-body:    'Open Sans', sans-serif;
+  --font-heading: 'Pacifico', cursive;
+  --font-script:  'Dancing Script', cursive;
+
+  --content-width: 1100px;
+}
+
+/* --- Reset ----------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Base ------------------------------------------ */
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--charcoal);
+  background-color: var(--beige);
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+ * White content card — used on interior pages where the
+ * original site shows white behind the content column.
+ * Wrap a page's content in <div class="page-body"> to use.
+ */
+.page-body {
+  background-color: #ffffff;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 2rem 2rem 3rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Page heading style (Pacifico, teal) ----------- */
+.page-heading {
+  font-family: var(--font-heading);
+  color: var(--teal);
+  font-size: 2.2rem;
+  font-weight: 400; /* Pacifico has only one weight */
+  text-align: center;
+  margin: 1.5rem 0 1rem;
+}
+
+/* --- Content column -------------------------------- */
+.content-col {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}

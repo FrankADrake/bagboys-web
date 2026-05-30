@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+/**
+ * Ossipee Valley Music Festival — /history/ossipee
+ *
+ * Text content from SPEC §4.12 (updated to past tense for retirement).
+ * Last appearance: July 24, 2025.
+ * Photos credit: Lynne Fountain (2019 festival).
+ *
+ * Photos go in public/images/ossipee/
+ * Drop any .jpg, .jpeg, .png, or .webp files there and they
+ * appear automatically — no code changes needed.
+ */
+
+const rawPaths = Object.keys(
+  import.meta.glob('/public/images/ossipee/*.{jpg,jpeg,png,webp}')
+);
+const photos = rawPaths.map((p) => p.replace('/public', ''));
+---
+
+<Layout title="Ossipee Valley Music Festival — The Bagboys">
+  <div class="page-body">
+
+    <h1 class="page-heading">Ossipee Valley Music Festival</h1>
+    <p class="venue-address">South Hiram, Maine</p>
+
+    <section class="venue-text">
+      <p class="para-history">
+        We LOVED the Ossipee Valley Music Festival! They invited us to play
+        during their very first year (1999) and we were there nearly every year
+        since. Always in late July in South Hiram, Maine.
+      </p>
+    </section>
+
+    {photos.length > 0 ? (
+      <section class="photo-section">
+        <div class="photo-grid">
+          {photos.map((src) => (
+            <div class="photo-wrap">
+              <img src={src} alt="The Bagboys at Ossipee Valley Music Festival" loading="lazy" />
+            </div>
+          ))}
+        </div>
+        <p class="photo-credit">Photos: Lynne Fountain</p>
+      </section>
+    ) : (
+      <p class="photos-pending">[ Photos coming soon ]</p>
+    )}
+
+    <p class="back-link"><a href="/history/residencies">← Back to Residencies</a></p>
+
+  </div>
+</Layout>
+
+<style>
+  .venue-address {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  .venue-text {
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .para-history {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.75;
+    text-align: center;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .photo-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #c8bfa8;
+  }
+
+  .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
+
+  .photo-wrap:hover img {
+    transform: scale(1.04);
+  }
+
+  .photo-credit {
+    font-size: 0.75rem;
+    color: #888;
+    font-style: italic;
+    text-align: right;
+    margin-bottom: 2.5rem;
+  }
+
+  .photos-pending {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #aaa;
+    font-style: italic;
+    padding: 2rem 0;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+  }
+</style>

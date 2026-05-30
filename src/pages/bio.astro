@@ -1,0 +1,334 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * Member photo strip
+ *
+ * When you have the four individual photos, drop them into
+ * public/images/ and update the src values below.
+ * Original photo: four members on the same stage background,
+ * L→R: Gretchen, Harvey, Frank, Jon. Credit: Georgia Bowder-Newton.
+ *
+ * Suggested filenames:
+ *   member-gretchen.jpg
+ *   member-harvey.jpg
+ *   member-frank.jpg
+ *   member-jon.jpg
+ */
+const members = [
+  { name: 'Gretchen Bowder',  src: '/images/member-gretchen.png', instruments: 'Banjo, Guitar, Vocals' },
+  { name: 'Harvey Bag',       src: '/images/member-harvey.jpg',   instruments: 'Bass, Guitar, Vocals'  },
+  { name: 'Frank Drake',      src: '/images/member-frank.jpg',    instruments: 'Mandolin, Guitar, Bass, Vocals' },
+  { name: 'Jon Ross',         src: '/images/member-jon.jpg',      instruments: 'Mandolin, Dobro, Guitar, Bass, Vocals' },
+];
+
+const pastMembers = [
+  { instrument: 'Guitar',     people: [
+    { name: 'Bob Chabot',      url: null },
+    { name: 'Paul Burch',      url: 'https://paulburch.com' },
+    { name: 'Larry Hirshberg', url: 'https://larryhirshberg.com' },
+    { name: 'Hide Kawatsure',  url: null },
+    { name: 'Jeremy Robin',    url: null },
+    { name: 'Becky Hall',      url: null },
+    { name: 'Brian Prindle',   url: 'https://brianprindlemusic.com' },
+  ]},
+  { instrument: 'Fiddle',     people: [
+    { name: 'Tom Sullivan',    url: null },
+    { name: 'Grace McNamee',   url: null },
+    { name: 'Michael Sortor',  url: null },
+    { name: 'Dan Kellar',      url: 'https://danielkellarviolinist.com' },
+    { name: 'Nicky Sanders ★', url: 'https://steepcanyon.com' },
+    { name: 'Joel Glassman',   url: null },
+    { name: 'Nate Leath',      url: 'https://facebook.com/nateleath' },
+    { name: 'Warren Hood',     url: 'https://warrenhood.com' },
+  ]},
+  { instrument: 'Dobro',      people: [
+    { name: 'Andy Hall ★',     url: 'https://thestringdusters.com' },
+    { name: 'Jerry Miller',    url: 'https://facebook.com/jerrymillerguitar' },
+  ]},
+  { instrument: 'Banjo',      people: [
+    { name: 'Chris Pandolfi ★', url: 'https://thestringdusters.com' },
+  ]},
+  { instrument: 'Percussion', people: [
+    { name: 'John Payne',      url: null },
+  ]},
+];
+---
+
+<Layout title="Bio — The Bagboys">
+
+  <!-- =====================================================
+       MEMBER PHOTO STRIP
+       Four panels side by side, same stage background.
+       Photo credit: Georgia Bowder-Newton.
+
+       When photos are ready:
+         1. Drop files into public/images/
+         2. Change each member's src: null → src: '/images/member-name.jpg'
+       ===================================================== -->
+  <div class="photo-strip-wrap">
+    <div class="photo-strip">
+      {members.map((m) => (
+        <div class="member-panel">
+          {m.src
+            ? <img src={m.src} alt={m.name} class="member-photo" />
+            : <div class="member-placeholder" aria-hidden="true">{m.name}</div>
+          }
+        </div>
+      ))}
+    </div>
+    <p class="photo-credit">Photo: Georgia Bowder-Newton</p>
+  </div>
+
+  <!-- =====================================================
+       BIO TEXT
+       Past-tense update applied per SPEC:
+         "bring" → "brought"
+         "each and every show!" → "each and every show."
+       ===================================================== -->
+  <section class="bio-text content-col">
+    <p>
+      THE BAGBOYS!
+    </p>
+    <p>
+      For over 25 years Boston's Bagboys dazzled music-loving audiences from
+      festival, concert, and nightclub stages all throughout New England with
+      their irresistible, from-the-heart acoustic string music. Founder Harvey
+      Bag anchored the Bagboys with his bass and occasional guitar, and sang
+      with the dusty soul of a cowboy fresh off the cattle drive. Frank Drake,
+      singing and variously displaying his prowess on guitar, mandolin, and
+      bass, was a longtime, well-known Boston music scene stalwart. Both Frank
+      and Harvey kept the band well stocked with their original compositions,
+      all of which were bonafide brand-new-old-time songs and future americana
+      classics. Gretchen Bowder sang and was a respected practitioner of the
+      five-string banjo, and took her turn on guitar too. Gretchen shared with
+      the Bagboys her love and appreciation of a variety of classic and
+      lesser-known material, ranging from Appalachian melodies to favorites of
+      the great American songbook and bossa nova. Jon Ross brought to the
+      Bagboys his lifetime of wide musical experience, played all around the
+      world. A typical performance kept Jon busy switching from mandolin to
+      dobro to guitar to bass, and singing, too. Singing, swinging, or taking
+      it down to the old home place, the Bagboys brought warmth, humor,
+      honesty, and musical excellence to each and every show.
+    </p>
+  </section>
+
+  <!-- =====================================================
+       PRESS QUOTES
+       ===================================================== -->
+  <section class="press-quotes content-col">
+    <blockquote>
+      <p>"Local legends the Bagboys were creating Americana long before the
+      genre had a website and an army of preened publicists."</p>
+      <cite>— Nashville songwriter <a href="https://paulburch.com" target="_blank" rel="noopener">Paul Burch</a></cite>
+    </blockquote>
+
+    <blockquote>
+      <p>"The Bagboys have infectious energy, friendly voices, consistently
+      pleasing picking, and a nice way with presenting popular but not
+      overdone favorites. But what is especially appealing about this
+      ensemble is that they can write great original material, and by Elsie,
+      they do!"</p>
+      <cite>— Bluegrass Unlimited</cite>
+    </blockquote>
+
+    <blockquote>
+      <p>"I love this band. They are somewhat reminiscent of the Austin Lounge
+      Lizards, Riders in the Sky or the Red Clay Ramblers. But don't let
+      their over-the-top humor fool you; this is a band of serious, talented,
+      and historically knowledgeable musicians. While they are capable of
+      some pretty convincing genre hopping — moving easily from solid driving
+      bluegrass to bouncy Western swing to contemporary folk — they're not
+      content with merely aping these traditions but inhabit them as living,
+      contemporary forms."</p>
+      <cite>— Freight Train Boogie</cite>
+    </blockquote>
+  </section>
+
+  <!-- =====================================================
+       PAST MEMBERS
+       ===================================================== -->
+  <section class="past-members content-col">
+    <h2 class="page-heading">Past Members &amp; Collaborators</h2>
+
+    <p class="past-members-intro">
+      Many superb players have worked with the Bagboys. We don't have room
+      to list everyone who has sat in with us over the years (although we'd
+      like to!) but some past members and frequent past collaborators have
+      included:
+    </p>
+
+    <div class="members-grid">
+      {pastMembers.map((group) => (
+        <div class="member-group">
+          <h3 class="instrument-heading">{group.instrument}</h3>
+          <ul>
+            {group.people.map((p) => (
+              <li>
+                {p.url
+                  ? <a href={p.url} target="_blank" rel="noopener">{p.name}</a>
+                  : p.name
+                }
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="members-footnote">
+      ★ Nicky Sanders — Steep Canyon Rangers<br />
+      ★ Andy Hall, Chris Pandolfi — The Stringdusters
+    </p>
+  </section>
+
+</Layout>
+
+<style>
+  /* ---- Photo strip ----------------------------------- */
+  .photo-strip-wrap {
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    padding: 0 1.5rem;
+  }
+
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 6px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+  }
+
+  .member-panel {
+    position: relative;
+    aspect-ratio: 3 / 4;
+  }
+
+  .member-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Placeholder until real photos arrive */
+  .member-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #3d2000 0%, #5c3510 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.75rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.03em;
+  }
+
+  .photo-credit {
+    font-size: 0.75rem;
+    color: #888;
+    text-align: right;
+    margin-top: 0.35rem;
+    font-style: italic;
+  }
+
+  /* ---- Bio text -------------------------------------- */
+  .bio-text {
+    max-width: 780px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .bio-text p:first-child {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #222;
+  }
+
+  .bio-text p:last-child {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #222;
+  }
+
+  /* ---- Press quotes ---------------------------------- */
+  .press-quotes {
+    max-width: 780px;
+    margin-bottom: 3rem;
+  }
+
+  .press-quotes blockquote {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .press-quotes blockquote p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333;
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+
+  .press-quotes cite {
+    font-size: 0.9rem;
+    color: var(--dark-red, #7a2a2a);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ---- Past members ---------------------------------- */
+  .past-members {
+    max-width: 780px;
+    margin-bottom: 3rem;
+  }
+
+  .past-members-intro {
+    text-align: center;
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .instrument-heading {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dark-red, #7a2a2a);
+    margin-bottom: 0.4rem;
+  }
+
+  .members-grid ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .members-grid li {
+    font-size: 0.95rem;
+    color: #333;
+    padding: 0.15rem 0;
+  }
+
+  .members-footnote {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.7;
+    text-align: center;
+  }
+</style>

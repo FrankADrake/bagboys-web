@@ -49,7 +49,20 @@ matching how they should appear on the Our Music page):
 - Year: ⚠️ confirm
 - 100% original Harvey Bag songs
 - Cover: colorful illustrated / pulp-comic style art
-- ⚠️ Track list not yet captured
+- Track list (confirmed from YouTube):
+  1. We'll Meet Again
+  2. Work Song
+  3. The Siren Sang Stardust
+  4. My Baby's Smile
+  5. The Senescence Blues
+  6. Lullabye
+  7. Closer to the End
+  8. Was That a Dream?
+  9. Ain't No Flies on Me
+  10. Ain't Seen My Home
+  11. Sigh No More
+  12. Goodbye
+- YouTube playlist: https://youtube.com/playlist?list=OLAK5uy_mRmJ6FLAs8lFrNYriHhHiWMXXuHEDGaIw
 - Originally promoted on homepage as "new CD" — now should live on Our Music page only
 
 ---

@@ -1,17 +1,83 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="The Bagboys">
+
+  <!-- =====================================================
+       HERO PHOTO
+       Four band members at a wooden pub table; "BB" in
+       lights behind them. Photo credit: (TBD)
+
+       To use the real photo:
+         1. Drop the file into public/images/
+         2. Replace the <div class="hero-placeholder"> below
+            with:  <img src="/images/your-filename.jpg"
+                        alt="The Bagboys" class="hero-photo" />
+       ===================================================== -->
+  <div class="hero-wrap">
+    <img
+      src="/images/hero.jpg"
+      alt="The Bagboys at a pub table — Harvey Bag, Frank Drake, Gretchen Bowder, Jon Ross"
+      class="hero-photo"
+    />
+  </div>
+
+  <!-- =====================================================
+       WELCOME TEXT
+       ===================================================== -->
+  <section class="welcome">
+    <p class="welcome-main">
+      <strong>Welcome</strong> to our little log cabin home on the internet!
+    </p>
+    <p class="welcome-sub">
+      We're the Bagboys! We play bluegrass, western swing,
+      and other fine varieties of acoustic music.
+    </p>
+  </section>
+
+</Layout>
+
+<style>
+  /* ---- Hero ------------------------------------------ */
+  .hero-wrap {
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    padding: 0 1.5rem;
+  }
+
+  /* Real photo — white border/frame, same as original site */
+  .hero-photo {
+    display: block;
+    width: 100%;
+    border: 6px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  }
+
+/* ---- Welcome text ---------------------------------- */
+  .welcome {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .welcome-main {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.55rem;
+    line-height: 1.4;
+    color: #222222;
+    margin-bottom: 0.75rem;
+  }
+
+  .welcome-main strong {
+    font-weight: 700;
+  }
+
+  .welcome-sub {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #444444;
+  }
+</style>

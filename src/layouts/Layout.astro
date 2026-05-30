@@ -1,0 +1,295 @@
+---
+/**
+ * Layout.astro — shared page shell for every page on bagboys.com
+ *
+ * Structure:
+ *   <header>  dark wood-grain banner with title + social icons
+ *   <nav>     teal nav bar with bottom chevron notch
+ *   <main>    page content via <slot />
+ *
+ * Usage in a page:
+ *   import Layout from '../layouts/Layout.astro';
+ *   <Layout title="Bio — The Bagboys"> ... </Layout>
+ */
+
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'The Bagboys' } = Astro.props;
+
+// Detect current path so we can highlight the active nav link
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans:wght@400;600;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+
+  </head>
+
+  <body>
+
+    <!-- ================================================
+         HEADER — wood-grain banner
+         ================================================ -->
+    <header class="site-header">
+      <div class="header-inner">
+
+        <div class="header-brand">
+          <span class="header-title">The Bagboys</span>
+          <span class="header-subtitle">Traditional &amp; Original Bluegrass &amp; Western Swing</span>
+        </div>
+
+        <div class="header-icons">
+          <!-- Facebook -->
+          <a
+            href="https://facebook.com/BagboysMusic"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            class="header-icon"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a
+            href="https://youtube.com/@frankdrake57"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+            class="header-icon"
+          >
+            <svg width="22" height="16" viewBox="0 0 22 16" fill="currentColor" aria-hidden="true">
+              <path d="M21.5 2.5a2.78 2.78 0 0 0-1.95-1.96C17.88.08 11 .08 11 .08S4.12.08 2.45.54A2.78 2.78 0 0 0 .5 2.5 29 29 0 0 0 0 8a29 29 0 0 0 .5 5.5A2.78 2.78 0 0 0 2.45 15.5C4.12 16 11 16 11 16s6.88 0 8.55-.5a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 22 8a29 29 0 0 0-.5-5.5z"/>
+              <polygon points="8.75 11.5 14.5 8 8.75 4.5 8.75 11.5" fill="white"/>
+            </svg>
+          </a>
+
+          <!-- Email -->
+          <a
+            href="mailto:info@bagboys.com"
+            aria-label="Email"
+            class="header-icon"
+          >
+            <svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1" y="1" width="20" height="14" rx="2" ry="2"/>
+              <polyline points="1,1 11,9 21,1"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ================================================
+         NAV BAR — teal with chevron notch
+         ================================================ -->
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li>
+          <a href="/" class:list={['nav-link', { active: isActive('/') }]}>HOME</a>
+        </li>
+        <li>
+          <a href="/bio" class:list={['nav-link', { active: isActive('/bio') }]}>BIO</a>
+        </li>
+        <li>
+          <a href="/our-music" class:list={['nav-link', { active: isActive('/our-music') }]}>OUR MUSIC</a>
+        </li>
+        <li>
+          <a href="/history" class:list={['nav-link', { active: isActive('/history') }]}>HISTORY</a>
+        </li>
+        <li>
+          <a href="/contact" class:list={['nav-link', { active: isActive('/contact') }]}>CONTACT US</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ================================================
+         MAIN CONTENT — individual pages slot in here
+         ================================================ -->
+    <main>
+      <slot />
+    </main>
+
+  </body>
+</html>
+
+<style>
+  /* ---- Header ---------------------------------------- */
+  .site-header {
+    /*
+     * Wood-grain effect built from CSS gradients:
+     *   Layer 1 (top): subtle horizontal plank-seam lines
+     *   Layer 2:       faint diagonal grain streaks
+     *   Layer 3 (base): warm dark-brown color variation
+     *
+     * When the actual header image is ready, replace this
+     * entire background with: background: url('/images/header-wood.jpg') center/cover;
+     */
+    background-color: #2d1500;
+    background-image:
+      repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 19px,
+        rgba(0, 0, 0, 0.35) 19px,
+        rgba(0, 0, 0, 0.35) 20px
+      ),
+      repeating-linear-gradient(
+        87deg,
+        transparent 0px,
+        rgba(255, 200, 100, 0.025) 1px,
+        transparent 2px,
+        transparent 9px
+      ),
+      linear-gradient(
+        90deg,
+        #2d1500 0%,
+        #4a2800 18%,
+        #3a1c00 38%,
+        #5a3410 52%,
+        #3a1c00 66%,
+        #4a2800 84%,
+        #2d1500 100%
+      );
+    padding: 0.75rem 1.5rem;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .header-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  /* "The Bagboys" — large script title */
+  .header-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .header-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.04em;
+    padding-left: 0.1rem;
+  }
+
+  /* Social icon row, top-right */
+  .header-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-icon {
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    transition: color 0.15s ease;
+  }
+
+  .header-icon:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  /* ---- Nav bar --------------------------------------- */
+  .site-nav {
+    background-color: #3aada8;
+    position: relative; /* needed for the chevron pseudo-element */
+  }
+
+  .nav-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    list-style: none;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.75rem 1.1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+  }
+
+  /*
+   * Chevron notch — a small downward-pointing triangle
+   * in the center of the nav bar's bottom edge.
+   * This is the Weebly-style decorative accent.
+   */
+  .site-nav::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #3aada8;
+    z-index: 10;
+  }
+
+  /* ---- Main ------------------------------------------ */
+  main {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+  }
+</style>

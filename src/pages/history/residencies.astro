@@ -1,0 +1,195 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+/**
+ * Residencies page — /history/residencies
+ *
+ * Three long-running venues:
+ *   The Plough & Stars   1989–2006 and 2018–2020
+ *   The Burren           2006–2018
+ *   Ossipee Valley       1999–2025
+ *
+ * Venue card photos go in public/images/:
+ *   residency-plough.jpg    — exterior, green sign with gold lettering
+ *   residency-burren.jpg    — exterior, brick, red doors, flower boxes
+ *   residency-ossipee.jpg   — band on stage under festival tent
+ */
+
+const venues = [
+  {
+    label:  'The Plough & Stars',
+    dates:  '1989–2006 and 2018–2020',
+    href:   '/history/plough',
+    img:    '/images/residency-plough.png',
+    alt:    'The Plough & Stars exterior — green sign with gold lettering',
+  },
+  {
+    label:  'The Burren',
+    dates:  '2006–2018',
+    href:   '/history/burren',
+    img:    '/images/residency-burren.png',
+    alt:    'The Burren exterior — brick building with red doors and flower boxes',
+  },
+  {
+    label:  'Ossipee Valley Music Festival',
+    dates:  '1999–2025',
+    href:   '/history/ossipee',
+    img:    '/images/residency-ossipee.jpg',
+    alt:    'The Bagboys on stage at the Ossipee Valley Music Festival',
+  },
+];
+---
+
+<Layout title="Residencies — The Bagboys">
+  <div class="page-body">
+
+    <h1 class="page-heading">Residencies</h1>
+
+    <!-- =====================================================
+         INTRO TEXT
+         ===================================================== -->
+    <section class="intro-text">
+      <p>
+        The Bagboys were proud to have held some of the longest residencies in
+        the Boston area. For decades they played the same beloved rooms year
+        after year — from a Saturday-night institution at the Plough &amp; Stars
+        to a long run at the Burren in Somerville, and an annual return to the
+        Ossipee Valley Music Festival in Maine. Click below to read more about
+        each of those long-running engagements.
+      </p>
+    </section>
+
+    <!-- =====================================================
+         VENUE CARDS — three equal columns
+         Each links to the dedicated venue page.
+         ===================================================== -->
+    <section class="venue-grid">
+      {venues.map((v) => (
+        <a href={v.href} class="venue-card">
+          <div class="venue-photo-wrap">
+            <img
+              src={v.img}
+              alt={v.alt}
+              class="venue-photo"
+              onerror="this.closest('.venue-photo-wrap').classList.add('placeholder')"
+            />
+          </div>
+          <div class="venue-info">
+            <h2 class="venue-name">{v.label}</h2>
+            <p class="venue-dates">{v.dates}</p>
+            <span class="venue-btn">Learn More →</span>
+          </div>
+        </a>
+      ))}
+    </section>
+
+    <!-- Back to History hub -->
+    <p class="back-link">
+      <a href="/history">← Back to History</a>
+    </p>
+
+  </div>
+</Layout>
+
+<style>
+  /* ---- Intro text ------------------------------------ */
+  .intro-text {
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .intro-text p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #555;
+  }
+
+  /* ---- Venue cards ----------------------------------- */
+  .venue-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .venue-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0d8c8;
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    background: #faf8f4;
+  }
+
+  .venue-card:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    border-color: var(--teal);
+    text-decoration: none;
+  }
+
+  .venue-photo-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #c8bfa8; /* warm tan placeholder background */
+  }
+
+  .venue-photo-wrap.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .venue-photo-wrap.placeholder::after {
+    content: 'Photo coming soon';
+    font-size: 0.8rem;
+    color: #888;
+    font-style: italic;
+  }
+
+  .venue-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
+
+  .venue-card:hover .venue-photo {
+    transform: scale(1.03);
+  }
+
+  .venue-info {
+    padding: 1rem 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .venue-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--teal);
+    line-height: 1.3;
+  }
+
+  .venue-dates {
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .venue-btn {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark-red);
+    letter-spacing: 0.03em;
+  }
+
+  /* ---- Back link ------------------------------------- */
+  .back-link {
+    font-size: 0.9rem;
+  }
+</style>

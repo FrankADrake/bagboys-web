@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * History hub — landing page linking to all historical sub-pages.
+ *
+ * Frank plans to write an original narrative intro for this page
+ * (the band's story, arc, key moments). See the placeholder below.
+ */
+
+const sections = [
+  {
+    heading: 'Residencies',
+    intro: 'The Bagboys held some of the longest residencies in the Boston area, playing the same rooms for years at a stretch.',
+    links: [
+      { label: 'Residencies — Plough, Burren & Ossipee', href: '/history/residencies', dates: '1989–2025' },
+    ],
+  },
+  {
+    heading: 'Photos & Memorabilia',
+    intro: null,
+    links: [
+      { label: 'Scrapbook',          href: '/history/scrapbook', dates: null },
+      { label: 'Historical Posters', href: '/history/posters',   dates: null },
+    ],
+  },
+];
+---
+
+<Layout title="History — The Bagboys">
+  <div class="page-body">
+
+    <h1 class="page-heading">History</h1>
+
+    <!-- =====================================================
+         NARRATIVE INTRO
+         Frank — this is your space to tell the band's story:
+         how it started, the arc over the years, key moments,
+         what it meant. A few paragraphs or as much as you like.
+         Replace the placeholder text below with your writing.
+         ===================================================== -->
+    <section class="narrative">
+      <p class="narrative-placeholder">
+        [ Frank's narrative intro goes here — the band's story, arc, and key moments. ]
+      </p>
+    </section>
+
+    <hr class="section-rule" />
+
+    <!-- Sub-page link sections -->
+    {sections.map((section) => (
+      <section class="hub-section">
+        <h2 class="section-heading">{section.heading}</h2>
+        {section.intro && <p class="section-intro">{section.intro}</p>}
+        <ul class="hub-links">
+          {section.links.map((link) => (
+            <li class="hub-card">
+              <a href={link.href} class="hub-card-link">
+                <span class="hub-card-label">{link.label}</span>
+                {link.dates && <span class="hub-card-dates">{link.dates}</span>}
+                <span class="hub-card-arrow">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+  </div>
+</Layout>
+
+<style>
+  /* ---- Narrative intro ------------------------------- */
+  .narrative {
+    max-width: 720px;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .narrative-placeholder {
+    font-size: 0.95rem;
+    color: #aaa;
+    font-style: italic;
+    padding: 1.5rem;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+  }
+
+  .section-rule {
+    border: none;
+    border-top: 1px solid #e0d8c8;
+    margin: 0 0 2.5rem;
+  }
+
+  /* ---- Hub sections ---------------------------------- */
+  .hub-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-heading {
+    font-family: 'Pacifico', cursive;
+    color: var(--teal, #3aada8);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-intro {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1rem;
+    max-width: 600px;
+  }
+
+  /* ---- Hub cards ------------------------------------- */
+  .hub-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 560px;
+  }
+
+  .hub-card-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #f7f4ef;
+    border: 1px solid #e0d8c8;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .hub-card-link:hover {
+    background: #eee8db;
+    border-color: var(--teal, #3aada8);
+    text-decoration: none;
+  }
+
+  .hub-card-label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #222;
+    flex: 1;
+  }
+
+  .hub-card-dates {
+    font-size: 0.8rem;
+    color: #888;
+    white-space: nowrap;
+  }
+
+  .hub-card-arrow {
+    font-size: 1rem;
+    color: var(--teal, #3aada8);
+    flex-shrink: 0;
+  }
+</style>
